@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".", ".", "{9B49A2B3-252A-470D-97BF-FF3CD41045B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{80A2CF50-2003-463B-BAF9-BB083AF32057}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{C3BF1977-7FA5-459F-8AEE-F623C687CD83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "", "", "{E79356C2-73E4-476F-8E00-1FF5C64C2602}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linnworks.Domain", "src\core\Linnworks.Domain\Linnworks.Domain.csproj", "{DC3152E0-6C11-47F9-8578-AAC07E864F68}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC3152E0-6C11-47F9-8578-AAC07E864F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC3152E0-6C11-47F9-8578-AAC07E864F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC3152E0-6C11-47F9-8578-AAC07E864F68}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DC3152E0-6C11-47F9-8578-AAC07E864F68}.Debug|x64.Build.0 = Debug|Any CPU
+		{DC3152E0-6C11-47F9-8578-AAC07E864F68}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DC3152E0-6C11-47F9-8578-AAC07E864F68}.Debug|x86.Build.0 = Debug|Any CPU
+		{DC3152E0-6C11-47F9-8578-AAC07E864F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC3152E0-6C11-47F9-8578-AAC07E864F68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC3152E0-6C11-47F9-8578-AAC07E864F68}.Release|x64.ActiveCfg = Release|Any CPU
+		{DC3152E0-6C11-47F9-8578-AAC07E864F68}.Release|x64.Build.0 = Release|Any CPU
+		{DC3152E0-6C11-47F9-8578-AAC07E864F68}.Release|x86.ActiveCfg = Release|Any CPU
+		{DC3152E0-6C11-47F9-8578-AAC07E864F68}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{80A2CF50-2003-463B-BAF9-BB083AF32057} = {9B49A2B3-252A-470D-97BF-FF3CD41045B4}
+		{C3BF1977-7FA5-459F-8AEE-F623C687CD83} = {80A2CF50-2003-463B-BAF9-BB083AF32057}
+		{E79356C2-73E4-476F-8E00-1FF5C64C2602} = {C3BF1977-7FA5-459F-8AEE-F623C687CD83}
+		{DC3152E0-6C11-47F9-8578-AAC07E864F68} = {E79356C2-73E4-476F-8E00-1FF5C64C2602}
+	EndGlobalSection
+EndGlobal

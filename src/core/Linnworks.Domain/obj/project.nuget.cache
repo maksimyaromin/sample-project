@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "H05r9y6V8R0oW/Q0mcMo+IV8FeybC0oDJvx8rTpxhXa1wYMgrwqX/x5P9U+Ozjq/8wwNTTgGIOrvKzdST8UJgA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\dariu\\source\\repos\\linnworks\\src\\core\\Linnworks.Domain\\Linnworks.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\dariu\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\dariu\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".", ".", "{48D599B5-BED4-4116-AD8F-3488AC612EDA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2F28D773-E991-4C69-8EEA-052681E01435}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{D0F287AF-E9C5-4354-A490-A3F2BA8B1F24}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "", "", "{679338D1-668E-4983-ACA9-05218D865562}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linnworks.Domain", "src\core\Linnworks.Domain\Linnworks.Domain.csproj", "{A3013F60-F494-4117-88F6-C1FFE502BB7F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3013F60-F494-4117-88F6-C1FFE502BB7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3013F60-F494-4117-88F6-C1FFE502BB7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3013F60-F494-4117-88F6-C1FFE502BB7F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A3013F60-F494-4117-88F6-C1FFE502BB7F}.Debug|x64.Build.0 = Debug|Any CPU
+		{A3013F60-F494-4117-88F6-C1FFE502BB7F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A3013F60-F494-4117-88F6-C1FFE502BB7F}.Debug|x86.Build.0 = Debug|Any CPU
+		{A3013F60-F494-4117-88F6-C1FFE502BB7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3013F60-F494-4117-88F6-C1FFE502BB7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3013F60-F494-4117-88F6-C1FFE502BB7F}.Release|x64.ActiveCfg = Release|Any CPU
+		{A3013F60-F494-4117-88F6-C1FFE502BB7F}.Release|x64.Build.0 = Release|Any CPU
+		{A3013F60-F494-4117-88F6-C1FFE502BB7F}.Release|x86.ActiveCfg = Release|Any CPU
+		{A3013F60-F494-4117-88F6-C1FFE502BB7F}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2F28D773-E991-4C69-8EEA-052681E01435} = {48D599B5-BED4-4116-AD8F-3488AC612EDA}
+		{D0F287AF-E9C5-4354-A490-A3F2BA8B1F24} = {2F28D773-E991-4C69-8EEA-052681E01435}
+		{679338D1-668E-4983-ACA9-05218D865562} = {D0F287AF-E9C5-4354-A490-A3F2BA8B1F24}
+		{A3013F60-F494-4117-88F6-C1FFE502BB7F} = {679338D1-668E-4983-ACA9-05218D865562}
+	EndGlobalSection
+EndGlobal
