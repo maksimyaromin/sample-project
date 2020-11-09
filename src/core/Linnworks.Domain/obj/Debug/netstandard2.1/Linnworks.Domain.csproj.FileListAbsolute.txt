@@ -1,0 +1,9 @@
+C:\Users\dariu\source\repos\linnworks\src\core\Linnworks.Domain\bin\Debug\netstandard2.1\Linnworks.Core.Domain.deps.json
+C:\Users\dariu\source\repos\linnworks\src\core\Linnworks.Domain\bin\Debug\netstandard2.1\Linnworks.Core.Domain.dll
+C:\Users\dariu\source\repos\linnworks\src\core\Linnworks.Domain\bin\Debug\netstandard2.1\Linnworks.Core.Domain.pdb
+C:\Users\dariu\source\repos\linnworks\src\core\Linnworks.Domain\obj\Debug\netstandard2.1\Linnworks.Domain.csprojAssemblyReference.cache
+C:\Users\dariu\source\repos\linnworks\src\core\Linnworks.Domain\obj\Debug\netstandard2.1\Linnworks.Domain.AssemblyInfoInputs.cache
+C:\Users\dariu\source\repos\linnworks\src\core\Linnworks.Domain\obj\Debug\netstandard2.1\Linnworks.Domain.AssemblyInfo.cs
+C:\Users\dariu\source\repos\linnworks\src\core\Linnworks.Domain\obj\Debug\netstandard2.1\Linnworks.Domain.csproj.CoreCompileInputs.cache
+C:\Users\dariu\source\repos\linnworks\src\core\Linnworks.Domain\obj\Debug\netstandard2.1\Linnworks.Core.Domain.dll
+C:\Users\dariu\source\repos\linnworks\src\core\Linnworks.Domain\obj\Debug\netstandard2.1\Linnworks.Core.Domain.pdb
