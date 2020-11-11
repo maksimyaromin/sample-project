@@ -1,73 +1,17 @@
-# Database design
+# Linnworks тестовое задание
 
-**Fields:**
-* Region (Australia and Oceania) NVARCHAR(512)
-* Country (Tuvalu) NVARCHAR(256)
-* Item Type (Baby Food) NVARCHAR(512)
-* Sales Channel (Offline) NVARCHAR(128)
-* Order Priority (H) CHAR(1)
-* Order Date (5/28/2010) DATE
-* Order ID (669165933) INT
-* Ship Date (6/27/2010) DATE
-* Units Sold (9925) INT
-* Unit Price (255.28) MONEY
-* Unit Cost (159.42) MONEY
-* Total Revenue (2533654.00) MONEY
-* Total Cost (1582243.50) MONEY
-* Total Profit (951410.50) MONEY
+Требования для запуска:
+1. ```dotnet --version // 3.1.402```
+2. ```node --version // 12.18.3```
+3. ```npm --version // 6.14.6```
+   
+*Скорей всего запустится и на других билдах. Главное требование ASP.NET Core 3.1 и версия Node.js с которой работает Angular CLI 10.2.0*
 
-**Tables:**
-* **SALE**
-    1. *ID* INT, PRIMARY KEY, AUTO INCREMENT,
-    2. *ORDER ID* INT, NOT NULL, FOREIGN KEY TO [ORDER]
-    3. *ITEM ID* INT, NOT NULL, FOREIGN KEY TO [ITEM]
-    4. *SALES CHANNEL* NVARCHAR(128), NULL,
-    5. *SHIP DATE AT* DATE, NULL, NOT UTC,
-    6. *COUNTRY ID* INT, NOT NULL, FOREIGN KEY TO [COUNTRY]
-    7. *UNIT SOLD* INT, NOT NULL,
-    8. *UNIT PRICE* MONEY, NOT NULL,
-    9. *UNIT COST* MONEY, NOT NULL,
-    10. *TOTAL REVENUE* MONEY, NOT NULL,
-    11. *TOTAL COST* MONEY, NOT NULL,
-    12. *TOTAL PROFIT* MONEY, NOT NULL
-    13. *CREATED AT UTC* DATETIME, NOT NULL, TRIGGER (?)
-    14. *CREATED BY* NVARCHAR(512), NOT NULL
-    15. *UPDATED AT UTC* DATETIME, NULL,
-    16. *UPDATED BY* NVARCHAR(512), NULL
-* **REGION**
-    1. *ID* INT, PRIMARY KEY, AUTO INCREMENT
-    2. *NAME* NVARCHAR(512), NOT NULL,
-    3. *CREATED AT UTC* DATETIME, NOT NULL, TRIGGER (?)
-    4. *CREATED BY* NVARCHAR(512), NOT NULL
-    5. *UPDATED AT UTC* DATETIME, NULL,
-    6. *UPDATED BY* NVARCHAR(512), NULL
-* **COUNTRY**
-    1. *ID* INT, PRIMARY KEY, AUTO INCREMENT
-    2. *NAME* NVARCHAR(512), NOT NULL
-    3. *REGION ID* INT, NOT NULL, FOREIGN KEY TO [REGION]
-    4. *CREATED AT UTC* DATETIME, NOT NULL, TRIGGER (?)
-    5. *CREATED BY* NVARCHAR(512), NOT NULL
-    6. *UPDATED AT UTC* DATETIME, NULL,
-    7. *UPDATED BY* NVARCHAR(512), NULL
-* **ITEM**
-    1. *ID* INT, PRIMARY KEY, AUTO INCREMENT
-    2. *NAME* NVARCHAR(512), NOT NULL,
-    3. *CREATED AT UTC* DATETIME, NOT NULL, TRIGGER (?)
-    4. *CREATED BY* NVARCHAR(512), NOT NULL
-    5. *UPDATED AT UTC* DATETIME, NULL,
-    6. *UPDATED BY* NVARCHAR(512), NULL
-* **ORDER PRIORITY**
-    1. *ID* INT, PRIMARY KEY, AUTO INCREMENT,
-    2. *ORDER PRIORITY* CHAR(1), NOT NULL,
-    3. *CREATED AT UTC* DATETIME, NOT NULL, TRIGGER (?)
-    4. *CREATED BY* NVARCHAR(512), NOT NULL
-    5. *UPDATED AT UTC* DATETIME, NULL,
-    6. *UPDATED BY* NVARCHAR(512), NULL
-* **ORDER**
-    1. *ID* INT, PRIMARY KEY,
-    2. *ORDER PRIORITY TYPE* INT, NOT NULL, FOREIGN KEY TO [ORDER PRIORITY]
-    3. *ORDER DATE AT* DATE, NOT NULL, NOT UTC
-    5. *CREATED AT UTC* DATETIME, NOT NULL, TRIGGER (?)
-    6. *CREATED BY* NVARCHAR(512), NOT NULL
-    7. *UPDATED AT UTC* DATETIME, NULL,
-    8. *UPDATED BY* NVARCHAR(512), NULL
+Для запуска проекта можно воспользоваться или **Visual Studio 2019** и как обычно (запускать надо проект Linnworks.Web.csproj), или можно воспользоваться **dotnet CLI**:
+```
+    cd '<solution_dir>'
+    dotnet run -p ./src/ui/Linnworks.Web/Linnworks.Web.csproj
+```
+
+В качестве базы данных я взял **SQLite**, база лежит прямо в репозитории в корне проекта (*Linnworks.db*). В эту базу по умолчанию записан 1000000 тестовых записей. В проекте есть утилита Linnworks.DatabaseSeederUtility, которая может закинуть в базу данных из .csv файлов. В папке с утилитой есть два файла sales.csv - использованный файл с 1000000 строк и sales_100.csv - такой же файл с 100 строк.
+*1000000 строк вставляется в базу примерно 1,5 часа на средненьком ноуте.*
