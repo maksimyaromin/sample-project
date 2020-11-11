@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="5b4c0657c74099ee67934b68113eaded7345b969" datatype="html">
+        <source>Linnworks Sales Report</source>
+        <target>Отчет о продажах Linnworks</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/report/report.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

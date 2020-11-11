@@ -1,7 +1,10 @@
 ﻿using Linnworks.Core.Application.Common.Models;
 using Linnworks.Core.Application.Models;
 using Linnworks.Core.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Linnworks.Web.Controllers
@@ -16,11 +19,18 @@ namespace Linnworks.Web.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<ActionResult<SearchQueryResult<SaleDto>>> SearchAsync([FromQuery] SearchCriteria searchCriteria)
+        public async Task<ActionResult<IEnumerable<SaleDto>>> SearchAsync([FromQuery] SearchCriteria searchCriteria)
         {
-            return await _salesService.SearchAsync(
+            return Ok(await _salesService.SearchAsync(
                 searchCriteria,
-                HttpContext.RequestAborted);
+                HttpContext.RequestAborted));
+        }
+
+        [HttpGet("search-options")]
+        public async Task<ActionResult<SearchOptions>> SearchOptionsAsync()
+        {
+            return Ok(
+                await _salesService.SearchOptionsAsync(HttpContext.RequestAborted));
         }
 
         [HttpGet("{id}")]
@@ -39,6 +49,33 @@ namespace Linnworks.Web.Controllers
             }
 
             await _salesService.UpdateAsync(id, sale, HttpContext.RequestAborted);
+
+            return NoContent();
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<int>> CreateAsync(SaleDto sale)
+        {
+            return Ok(await _salesService.CreateAsync(sale, HttpContext.RequestAborted));
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteAsync(int[] saleIds)
+        {
+            await _salesService.DeleteManyAsync(saleIds, HttpContext.RequestAborted);
+            return NoContent();
+        }
+
+        [HttpPut("import")]
+        public async Task<ActionResult> ImportAsync(IFormFile data)
+        {
+            using var stream = data.OpenReadStream();
+            var sales = await JsonSerializer.DeserializeAsync<List<SaleDto>>(stream, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            
+            await _salesService.ImportAsync(sales, HttpContext.RequestAborted);
 
             return NoContent();
         }

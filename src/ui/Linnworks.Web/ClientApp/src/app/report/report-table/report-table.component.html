@@ -1,0 +1,43 @@
+<p-table
+    [columns]="columns"
+    [value]="items"
+    [lazy]="true"
+    (onLazyLoad)="goToPage($event)"
+    [paginator]="true"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10,25,50,100]"
+    [rows]="10"
+    [totalRecords]="searchOptions.total"
+    [loading]="isLoading"
+    [scrollable]="true"
+    scrollHeight="500px"
+    [resizableColumns]="true"
+    styleClass="p-datatable-gridlines p-datatable-responsive"
+    i18n-currentPageReportTemplate
+>
+    <ng-template pTemplate="colgroup" let-columns>
+        <colgroup>
+            <col style="width:250px" *ngFor="let column of columns" />
+        </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th i18n pResizableColumn *ngFor="let column of columns">
+                {{column.displayName}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let column of columns">
+                <span class="p-column-title">{{column.header}}</span>
+                <ng-container [ngSwitch]="column.format">
+                    <ng-container *ngSwitchCase="TableColumnFormat.Currency">{{rowData[column.field] | currency:'USD'}}</ng-container>
+                    <ng-container *ngSwitchCase="TableColumnFormat.Date">{{rowData[column.field] | date:'dd.MM.yyyy'}}</ng-container>
+                    <ng-container *ngSwitchDefault>{{rowData[column.field]}}</ng-container>
+                </ng-container>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

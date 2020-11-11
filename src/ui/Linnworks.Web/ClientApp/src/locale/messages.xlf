@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="5b4c0657c74099ee67934b68113eaded7345b969" datatype="html">
+        <source>Linnworks Sales Report</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/report/report.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c73e83c39b427a2443cb8836329401f0fe197727" datatype="html">
+        <source>Showing {first} to {last} of {totalRecords} entries</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/report/report-table/report-table.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9d5ad3a4db11b8f9547db92d0f2c40f3622dc970" datatype="html">
+        <source> <x id="INTERPOLATION" equiv-text="                {{colu"/> </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/report/report-table/report-table.component.html</context>
+          <context context-type="linenumber">26,28</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

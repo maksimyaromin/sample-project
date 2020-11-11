@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-import { SalesReportModule } from './components/sales-report/sales-report.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
     declarations: [
@@ -11,8 +12,9 @@ import { SalesReportModule } from './components/sales-report/sales-report.module
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         HttpClientModule,
-        SalesReportModule
+        AppRoutingModule
     ],
     providers: [],
     bootstrap: [AppComponent]

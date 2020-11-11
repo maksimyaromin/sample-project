@@ -8,7 +8,9 @@ namespace Linnworks.Core.Application.Services.Interfaces
 {
     public interface ISalesService
     {
-        Task<SearchQueryResult<SaleDto>> SearchAsync(SearchCriteria searchCriteria, CancellationToken cancellationToken);
+        Task<IEnumerable<SaleDto>> SearchAsync(SearchCriteria searchCriteria, CancellationToken cancellationToken);
+
+        Task<SearchOptions> SearchOptionsAsync(CancellationToken cancellationToken);
 
         Task<SaleDto> GetAsync(int saleId, CancellationToken cancellationToken);
 
@@ -16,7 +18,7 @@ namespace Linnworks.Core.Application.Services.Interfaces
 
         Task UpdateAsync(int saleId, SaleDto sale, CancellationToken cancellationToken);
 
-        Task DeleteManyAsync(int[] salesId, CancellationToken cancellationToken);
+        Task DeleteManyAsync(int[] saleIds, CancellationToken cancellationToken);
 
         Task ImportAsync(IEnumerable<SaleDto> sales, CancellationToken cancellationToken);
     }

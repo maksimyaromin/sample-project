@@ -7,16 +7,22 @@
   "newProjectRoot": "projects",
   "projects": {
     "linnworks-spa": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "linnworks",
-      "architect": {
+        "projectType": "application",
+        "schematics": {
+            "@schematics/angular:component": {
+                "style": "scss"
+            }
+        },
+        "root": "",
+        "sourceRoot": "src",
+        "prefix": "linnworks",
+        "i18n": {
+            "sourceLocale": "en-US",
+            "locales": {
+                "ru": "src/locale/messages.ru.xlf"
+            }
+        },
+        "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -27,11 +33,14 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+                "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
+                "node_modules/primeng/resources/primeng.min.css",
+                "node_modules/primeicons/primeicons.css",
+                "src/styles.scss"
             ],
             "scripts": [],
             "progress": true

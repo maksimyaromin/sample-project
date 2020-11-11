@@ -7,6 +7,7 @@ using Linnworks.Core.Application.Models;
 using Linnworks.Core.Application.Services.Interfaces;
 using Linnworks.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -38,15 +39,15 @@ namespace Linnworks.Core.Application.Services
             return entity.Id;
         }
 
-        public async Task DeleteManyAsync(int[] salesId, CancellationToken cancellationToken)
+        public async Task DeleteManyAsync(int[] saleIds, CancellationToken cancellationToken)
         {
             var entities = await _dbContext.Sales
-                .Where(sale => salesId.Contains(sale.Id))
+                .Where(sale => saleIds.Contains(sale.Id))
                 .ToListAsync(cancellationToken);
 
-            if (entities.Count != salesId.Length)
+            if (entities.Count != saleIds.Length)
             {
-                throw new NotFoundException(nameof(Sale), salesId);
+                throw new NotFoundException(nameof(Sale), saleIds);
             }
 
             _dbContext.Sales.RemoveRange(entities);
@@ -70,17 +71,179 @@ namespace Linnworks.Core.Application.Services
             return entity;
         }
 
-        public Task ImportAsync(IEnumerable<SaleDto> sales, CancellationToken cancellationToken)
+        public async Task ImportAsync(IEnumerable<SaleDto> sales, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            var itemKeys = sales
+                .Select(sale => sale.ItemName)
+                .Distinct();
+            var countryKeys = sales
+                .Select(sale => sale.CountryName)
+                .Distinct();
+            var regionKeys = sales
+                .Select(sale => sale.CountryRegionName)
+                .Distinct();
+            var orderPriorityKeys = sales
+                .Select(sale => sale.OrderPrioritySymbol)
+                .Distinct();
+
+            var items = new Dictionary<string, Item>();
+            var countries = new Dictionary<string, Country>();
+            var regions = new Dictionary<string, Region>();
+            var orderPriorities = new Dictionary<string, OrderPriority>();
+
+            async Task itemsRead()
+            {
+                items = await _dbContext.Items
+                    .Where(item => itemKeys.Contains(item.Name))
+                    .ToDictionaryAsync(item => item.Name);
+            }
+
+            async Task countriesRead()
+            {
+                countries = await _dbContext.Countries
+                    .Where(country => countryKeys.Contains(country.Name))
+                    .ToDictionaryAsync(country => country.Name);
+            }
+
+            async Task regionsRead()
+            {
+                regions = await _dbContext.Regions
+                    .Where(region => regionKeys.Contains(region.Name))
+                    .ToDictionaryAsync(region => region.Name);
+            }
+
+            async Task orderPrioritiesRead()
+            {
+                orderPriorities = await _dbContext.OrderPriorities
+                    .Where(orderPriority => orderPriorityKeys.Contains(orderPriority.Symbol))
+                    .ToDictionaryAsync(orderPriority => orderPriority.Symbol);
+            }
+
+            await Task.WhenAll(new Task[]
+            {
+                itemsRead(),
+                countriesRead(),
+                regionsRead(),
+                orderPrioritiesRead()
+            });
+
+
+            var entities = new List<Sale>();
+
+            foreach (var sale in sales)
+            {
+                Item item;
+                Country country;
+                Region region;
+                OrderPriority orderPriority;
+
+                if (items.ContainsKey(sale.ItemName))
+                {
+                    item = items[sale.ItemName];
+                }
+                else
+                {
+                    item = new Item
+                    {
+                        Id = 0,
+                        Name = sale.ItemName
+                    };
+                    items.Add(sale.ItemName, item);
+                }
+
+                if (regions.ContainsKey(sale.CountryRegionName))
+                {
+                    region = regions[sale.CountryRegionName];
+                }
+                else
+                {
+                    region = new Region
+                    {
+                        Id = 0,
+                        Name = sale.CountryRegionName
+                    };
+                    regions.Add(sale.CountryRegionName, region);
+                }
+
+                if (countries.ContainsKey(sale.CountryName))
+                {
+                    country = countries[sale.CountryName];
+
+                    if (country.RegionId != region.Id)
+                    {
+                        country.Id = 0;
+                        country.RegionId = region.Id;
+                        country.Region = region;
+                    }
+                }
+                else
+                {
+                    country = new Country
+                    {
+                        Id = 0,
+                        Name = sale.CountryName,
+                        RegionId = region.Id,
+                        Region = region
+                    };
+                    countries.Add(sale.CountryName, country);
+                }
+
+                if (orderPriorities.ContainsKey(sale.OrderPrioritySymbol))
+                {
+                    orderPriority = orderPriorities[sale.OrderPrioritySymbol];
+                }
+                else
+                {
+                    orderPriority = new OrderPriority
+                    {
+                        Id = 0,
+                        Symbol = sale.OrderPrioritySymbol
+                    };
+                    orderPriorities.Add(sale.OrderPrioritySymbol, orderPriority);
+                }
+
+                var order = new Order
+                {
+                    OrderedAt = sale.OrderedAt,
+                    OrderPriority = orderPriority
+                };
+
+                entities.Add(new Sale
+                {
+                    SalesChannel = sale.SalesChannel,
+                    ShippedAt = sale.ShippedAt,
+                    UnitsSold = sale.UnitsSold,
+                    UnitPrice = sale.UnitPrice,
+                    UnitCost = sale.UnitCost,
+                    TotalRevenue = sale.TotalRevenue,
+                    TotalCost = sale.TotalCost,
+                    TotalProfit = sale.TotalProfit,
+                    Order = order,
+                    Item = item,
+                    Country = country
+                });
+            }
+
+            _dbContext.Sales.AddRange(entities);
+            await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public Task<SearchQueryResult<SaleDto>> SearchAsync(SearchCriteria searchCriteria, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<SaleDto>> SearchAsync(SearchCriteria searchCriteria, CancellationToken cancellationToken = default)
         {
-            var sales = _dbContext.Sales
-                .ProjectTo<SaleDto>(_mapper.ConfigurationProvider);
+            return await _dbContext.Sales
+                .OrderByDescending(sale => sale.CreatedAtUtc)
+                .ProjectTo<SaleDto>(_mapper.ConfigurationProvider)
+                .Skip((searchCriteria.CurrentPage - 1) * searchCriteria.PageSize)
+                .Take(searchCriteria.PageSize)
+                .ToListAsync();
+        }
 
-            return SearchQueryResult<SaleDto>.CreateAsync(sales, searchCriteria);
+        public async Task<SearchOptions> SearchOptionsAsync(CancellationToken cancellationToken)
+        {
+            return new SearchOptions
+            {
+                Total = await _dbContext.Sales.CountAsync()
+            };
         }
 
         public async Task UpdateAsync(int saleId, SaleDto sale, CancellationToken cancellationToken)
