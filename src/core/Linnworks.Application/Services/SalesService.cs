@@ -231,8 +231,8 @@ namespace Linnworks.Core.Application.Services
         public async Task<IEnumerable<SaleDto>> SearchAsync(SearchCriteria searchCriteria, CancellationToken cancellationToken = default)
         {
             return await _dbContext.Sales
-                .OrderByDescending(sale => sale.CreatedAtUtc)
                 .ProjectTo<SaleDto>(_mapper.ConfigurationProvider)
+                .OrderByDescending(sale => sale.OrderedAt)
                 .Skip((searchCriteria.CurrentPage - 1) * searchCriteria.PageSize)
                 .Take(searchCriteria.PageSize)
                 .ToListAsync();
