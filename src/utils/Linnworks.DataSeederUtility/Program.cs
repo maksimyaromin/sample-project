@@ -15,7 +15,7 @@ namespace Linnworks.DataSeederUtility
     class Program
     {
         private static LinnworksDbContext _dbContext;
-        private static int _chunkSize = 10;
+        private static int _chunkSize = 100000;
         private static int _currentChunkNo = 0;
         private static ArrayPool<Sale> _arrayPool = ArrayPool<Sale>.Shared;
 
