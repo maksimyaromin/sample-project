@@ -18,8 +18,10 @@ namespace Linnworks.Core.Infrastructure
             else
             {
                 services.AddDbContext<LinnworksDbContext>(options =>
-                    options.UseSqlite(
-                        configuration.GetConnectionString("DefaultConnection")));
+                    options
+                        .UseSqlite(
+                            configuration.GetConnectionString("DefaultConnection"))
+                        .EnableSensitiveDataLogging());
             }
 
             services.AddScoped<ILinnworksDbContext>(provider => provider.GetService<LinnworksDbContext>());

@@ -15,7 +15,7 @@ namespace Linnworks.DataSeederUtility
     class Program
     {
         private static LinnworksDbContext _dbContext;
-        private static int _chunkSize = 100000;
+        private static int _chunkSize = 10;
         private static int _currentChunkNo = 0;
         private static ArrayPool<Sale> _arrayPool = ArrayPool<Sale>.Shared;
 
@@ -75,6 +75,18 @@ namespace Linnworks.DataSeederUtility
                     index = index + 1 == _chunkSize
                         ? 0
                         : index + 1;
+                }
+
+                if (sales.Any(sale => sale != null))
+                {
+                    _dbContext.Sales.AddRange(sales.Where(sale => sale != null));
+                    await _dbContext.SaveChangesAsync();
+
+                    _arrayPool.Return(sales);
+
+                    Console.WriteLine($"Chunk {_currentChunkNo + 1} was saved.");
+
+                    _currentChunkNo += 1;
                 }
 
                 Console.WriteLine("All sales were parsed.");
@@ -190,7 +202,7 @@ namespace Linnworks.DataSeederUtility
                 _dbContext.Sales.AddRange(sales.ToList().Take(_chunkSize));
                 await _dbContext.SaveChangesAsync();
 
-                _arrayPool.Return(sales);
+                _arrayPool.Return(sales, true);
                 sales = _arrayPool.Rent(_chunkSize);
 
                 Console.WriteLine($"Chunk {_currentChunkNo + 1} was saved.");

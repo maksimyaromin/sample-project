@@ -39,7 +39,8 @@ namespace Linnworks.Core.Infrastructure.Persistence.Configurations
                 .IsRequired();
 
             builder.HasOne(e => e.Order)
-                .WithOne(e => e.Sale);
+                .WithOne(e => e.Sale)
+                .HasForeignKey<Sale>(e => e.OrderId);
 
             builder.HasOne(e => e.Item)
                 .WithMany(e => e.Sales);

@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{D0F287AF-E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utils", "utils", "{B43668FA-9D35-49DD-A347-5B10C8EEA9AC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ui", "ui", "{EE3C5622-16FD-4039-8732-8769221327A0}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Linnworks.Domain", "src\core\Linnworks.Domain\Linnworks.Domain.csproj", "{A3013F60-F494-4117-88F6-C1FFE502BB7F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Linnworks.Infrastructure", "src\core\Linnworks.Infrastructure\Linnworks.Infrastructure.csproj", "{785860C9-D614-4055-88AE-4D5459DEC011}"
@@ -22,6 +24,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Linnworks.Application", "src\core\Linnworks.Application\Linnworks.Application.csproj", "{973DA2A9-ABF1-4667-9F56-193D26B0F5FE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Linnworks.DataSeederUtility", "src\utils\Linnworks.DataSeederUtility\Linnworks.DataSeederUtility.csproj", "{4D5B18C8-AACF-4BFA-B46B-0195C7EDBB02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linnworks.Web", "src\ui\Linnworks.Web\Linnworks.Web.csproj", "{BC6316FE-08F5-4C0D-9535-BC81424BC211}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +85,18 @@ Global
 		{4D5B18C8-AACF-4BFA-B46B-0195C7EDBB02}.Release|x64.Build.0 = Release|Any CPU
 		{4D5B18C8-AACF-4BFA-B46B-0195C7EDBB02}.Release|x86.ActiveCfg = Release|Any CPU
 		{4D5B18C8-AACF-4BFA-B46B-0195C7EDBB02}.Release|x86.Build.0 = Release|Any CPU
+		{BC6316FE-08F5-4C0D-9535-BC81424BC211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC6316FE-08F5-4C0D-9535-BC81424BC211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC6316FE-08F5-4C0D-9535-BC81424BC211}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BC6316FE-08F5-4C0D-9535-BC81424BC211}.Debug|x64.Build.0 = Debug|Any CPU
+		{BC6316FE-08F5-4C0D-9535-BC81424BC211}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BC6316FE-08F5-4C0D-9535-BC81424BC211}.Debug|x86.Build.0 = Debug|Any CPU
+		{BC6316FE-08F5-4C0D-9535-BC81424BC211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC6316FE-08F5-4C0D-9535-BC81424BC211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC6316FE-08F5-4C0D-9535-BC81424BC211}.Release|x64.ActiveCfg = Release|Any CPU
+		{BC6316FE-08F5-4C0D-9535-BC81424BC211}.Release|x64.Build.0 = Release|Any CPU
+		{BC6316FE-08F5-4C0D-9535-BC81424BC211}.Release|x86.ActiveCfg = Release|Any CPU
+		{BC6316FE-08F5-4C0D-9535-BC81424BC211}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +108,8 @@ Global
 		{785860C9-D614-4055-88AE-4D5459DEC011} = {D0F287AF-E9C5-4354-A490-A3F2BA8B1F24}
 		{973DA2A9-ABF1-4667-9F56-193D26B0F5FE} = {D0F287AF-E9C5-4354-A490-A3F2BA8B1F24}
 		{4D5B18C8-AACF-4BFA-B46B-0195C7EDBB02} = {B43668FA-9D35-49DD-A347-5B10C8EEA9AC}
+		{EE3C5622-16FD-4039-8732-8769221327A0} = {2F28D773-E991-4C69-8EEA-052681E01435}
+		{BC6316FE-08F5-4C0D-9535-BC81424BC211} = {EE3C5622-16FD-4039-8732-8769221327A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {15E58F9A-EBE2-4618-A294-38FEC41FF5A5}
